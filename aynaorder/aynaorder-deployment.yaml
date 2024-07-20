@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aynaorder
+spec:
+  replicas: 1  # Number of instances (pods) to run
+  selector:
+    matchLabels:
+      app: aynaorder
+  template:
+    metadata:
+      labels:
+        app: aynaorder
+    spec:
+      containers:
+      - name: aynaorder
+        image: ganesh2soft/aynaorder:latest # Replace with your Docker image name
+        imagePullPolicy: IfNotPresent  
+        
+        ports:
+        - containerPort: 9105  # Port that your Spring Boot application listens on inside the container
+        env:   # Setting Enviornmental Variables
+          - name: MYSQL_HOST   # Setting Database host address from configMap
+            valueFrom: 
+              configMapKeyRef:
+                name: aynaorder-db-conf  # name of configMap
+                key: host
+          - name: MYSQL_DATABASE  # Setting Database name from configMap
+            valueFrom:
+              configMapKeyRef:
+                name: aynaorder-db-conf 
+                key: name
+          - name: MYSQL_ROOT_PASSWORD # Setting Root Password of mysql From a 'Secret'
+            valueFrom:
+              secretKeyRef:
+                name: aynaorder-db-root-credentials # Name of the 'Secret'
+                key: password   # 'key' inside the Secret which contains required 'value'

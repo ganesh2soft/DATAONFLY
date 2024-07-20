@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aynaserviceregistry
+spec:
+  replicas: 1  # Number of instances (pods) to run
+  selector:
+    matchLabels:
+      app: aynaserviceregistry
+  template:
+    metadata:
+      labels:
+        app: aynaserviceregistry
+    spec:
+      containers:
+      - name: aynaserviceregistry
+        image: ganesh2soft/aynaserviceregistry:latest # Replace with your Docker image name
+        imagePullPolicy: IfNotPresent  
+        
+        ports:
+        - containerPort: 8761  # Port that your Spring Boot application listens on inside the container

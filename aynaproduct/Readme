@@ -1,0 +1,64 @@
+POST
+http://localhost:9100/api/v1/product/addProduct
+
+{
+    "sellerName": "Alabama Ltd",
+    "productName": "Avenger",
+    "categoryName": "Toys",   
+    "unitPrice":250,
+    "listedDate": "2024-06-30T12:00:00Z",
+    "imageUrl": "assets/img01.jpg"
+}
+{
+    "sellerName": "XYZ Electronics",
+    "productName": "Smart Watch",
+    "categoryName": "Electronics",
+    "listedDate": "2024-07-01T08:30:00Z",
+     "unitPrice":250,
+    "imageUrl": "assets/img02.jpg"
+}
+{
+    "sellerName": "Best Books Inc.",
+    "productName": "The Great Gatsby",
+    "categoryName": "Books",
+    "listedDate": "2024-06-29T15:45:00Z",
+     "unitPrice":450,
+    "imageUrl": "assets/img03.jpg"
+}
+
+{
+    "sellerName": "Fashion Trends Co.",
+    "productName": "Men's Leather Jacket",
+    "categoryName": "Fashion",
+    "listedDate": "2024-06-28T10:00:00Z",
+     "unitPrice":1000,
+    "imageUrl": assets/img04.jpg"
+}
+
+{
+    "sellerName": "Healthy Bites Grocers",
+    "productName": "Organic Apples",
+    "categoryName": "Groceries",
+    "listedDate": "2024-07-02T14:20:00Z",
+     "unitPrice":700,
+     
+    "imageUrl": "assets/img05.jpg"
+}
+{
+    "sellerName": "Pet Paradise",
+    "productName": "Cat Toy Set",
+    "categoryName": "Pets",
+    "listedDate": "2024-06-27T11:10:00Z",
+     "unitPrice":2502
+    "imageUrl": "assets/img06.jpg"
+}
+
+
+
+GET ALL
+http://localhost:9100/api/v1/product/allProducts
+
+
+DELETE by Product ID
+http://localhost:9100/api/v1/product/deleteproduct/{ProductId}
+http://localhost:9100/api/v1/product/deleteproduct/6

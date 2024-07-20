@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aynaproduct
+spec:
+  replicas: 1  # Number of instances (pods) to run
+  selector:
+    matchLabels:
+      app: aynaproduct
+  template:
+    metadata:
+      labels:
+        app: aynaproduct
+    spec:
+      containers:
+      - name: aynaproduct
+        image: ganesh2soft/aynaproduct:latest # Replace with your Docker image name
+        imagePullPolicy: IfNotPresent  
+        
+        ports:
+        - containerPort: 9100  # Port that your Spring Boot application listens on inside the container
+        env:   # Setting Enviornmental Variables
+          - name: MYSQL_HOST   # Setting Database host address from configMap
+            valueFrom: 
+              configMapKeyRef:
+                name: aynaproduct-db-conf  # name of configMap
+                key: host
+          - name: MYSQL_DATABASE  # Setting Database name from configMap
+            valueFrom:
+              configMapKeyRef:
+                name: aynaproduct-db-conf 
+                key: name
+          - name: MYSQL_ROOT_PASSWORD # Setting Root Password of mysql From a 'Secret'
+            valueFrom:
+              secretKeyRef:
+                name: aynaproduct-db-root-credentials # Name of the 'Secret'
+                key: password   # 'key' inside the Secret which contains required 'value'

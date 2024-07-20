@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: aynaorder-db-conf
+data:
+ host: mysqlhost
+ name: orderdb 
