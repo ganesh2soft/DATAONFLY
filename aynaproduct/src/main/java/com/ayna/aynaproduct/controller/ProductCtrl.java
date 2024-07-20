@@ -35,4 +35,6 @@ public class ProductCtrl {
 	public void deleteProductbyId(@PathVariable("ProductId") Long iid) {
 		productService.deleteProduct(iid);
 }
+	
+	 
 }
